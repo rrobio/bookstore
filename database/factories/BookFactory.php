@@ -21,7 +21,7 @@ class BookFactory extends Factory
             'author_id' => Author::factory(),
             'title' => fake()->text(100),
             'publication' => fake()->dateTime(),
-            'price' => fake()->randomFloat(),
+            'price' => fake()->randomFloat(2, 0, 200),
         ];
     }
 }
