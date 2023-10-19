@@ -40,6 +40,9 @@ Route::get('/library', function() {
 Route::resource('/authors', AuthorController::class)
     ->only(['index', 'store']);
 
+Route::resource('/books', \App\Http\Controllers\BookController::class)
+    ->only(['index', 'store']);
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
