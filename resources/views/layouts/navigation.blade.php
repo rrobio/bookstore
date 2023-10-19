@@ -12,21 +12,26 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    @auth
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    @endauth
 
                     <x-nav-link :href="route('store')" :active="request()->routeIs('store')">
                         Store
                     </x-nav-link>
 
+                    @auth
                     <x-nav-link :href="route('library')" :active="request()->routeIs('library')">
                         Library
                     </x-nav-link>
+                    @endauth
                 </div>
             </div>
 
             <!-- Settings Dropdown -->
+            @auth
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
@@ -69,6 +74,17 @@
                     </svg>
                 </button>
             </div>
+            @endauth
+            @guest
+                @if (Route::has('login'))
+                    <x-nav-link :href="route('login')" :active="request()->routeIs('dashboard')">
+                        Login
+                    </x-nav-link>
+                    <x-nav-link :href="route('register')" :active="request()->routeIs('dashboard')">
+                        Register
+                    </x-nav-link>
+                @endif
+            @endguest
         </div>
     </div>
 
@@ -81,6 +97,7 @@
         </div>
 
         <!-- Responsive Settings Options -->
+        @auth
         <div class="pt-4 pb-1 border-t border-gray-200">
             <div class="px-4">
                 <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
@@ -104,5 +121,6 @@
                 </form>
             </div>
         </div>
+        @endauth
     </div>
 </nav>
