@@ -15,7 +15,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('store', [
+        'books' => \App\Models\Book::with('author')->paginate(14),
+    ]);
 });
 
 Route::get('/dashboard', function () {
@@ -34,8 +36,7 @@ Route::get('/library', function() {
     ]);
 })->name('library');
 
-Route::middleware('
-}auth')->group(function () {
+Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
