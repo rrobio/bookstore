@@ -21,7 +21,11 @@ class DatabaseSeeder extends Seeder
         User::truncate();
 
         Book::factory(25)->create();
-        User::factory()->create(['email' => 'admin@example.com', 'password' => bcrypt('1234')]);
+        User::factory()->create([
+            'email' => 'admin@example.com',
+            'username' => 'admin',
+            'password' => bcrypt('1234'),
+        ]);
 
 
         // \App\Models\User::factory()->create([
