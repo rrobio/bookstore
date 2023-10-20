@@ -2,11 +2,12 @@
 
 namespace Tests\Feature;
 
-// use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class AddAuthorTest extends TestCase
 {
+    use RefreshDatabase;
     /**
      * A basic test example.
      */
@@ -15,5 +16,11 @@ class AddAuthorTest extends TestCase
         $response = $this->get('/authors');
 
         $response->assertStatus(200);
+    }
+
+    public function test_adding_an_author(): void {
+       $response = $this->post('/authors', ['author_first_name' => 'FirstTest', 'author_last_name' => 'LastTest']);
+       $response->assertStatus(302);
+       $this->assertDatabaseHas('authors', ['first_name' => 'FirstTest']);
     }
 }
