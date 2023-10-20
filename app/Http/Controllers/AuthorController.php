@@ -11,6 +11,7 @@ class AuthorController extends Controller
 {
     //
     public function index(){
+        return view('authors')->with(['authors' => Author::all()]);
     }
     public function store(Request $request): RedirectResponse
     {

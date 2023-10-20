@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\BookController;
 use App\Http\Controllers\ProfileController;
 use App\Models\Author;
+use App\Models\Book;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('store', [
-        'books' => \App\Models\Book::with('author')->paginate(15),
+        'books' => Book::with('author')->paginate(15),
     ]);
 });
 
@@ -30,20 +32,20 @@ Route::get('/dashboard', function () {
 
 Route::get('/store', function () {
     return view('store', [
-        'books' => \App\Models\Book::with('author')->paginate(15),
+        'books' => Book::with('author')->paginate(15),
     ]);
 })->name('store');
 
 Route::get('/library', function() {
     return view ('library',[
-        'books' => \App\Models\Book::with('author')->paginate(15)
+        'books' => Book::with('author')->paginate(15)
     ]);
 })->name('library');
 
 Route::resource('/authors', AuthorController::class)
     ->only(['index', 'store']);
 
-Route::resource('/books', \App\Http\Controllers\BookController::class)
+Route::resource('/books', BookController::class)
     ->only(['index', 'store']);
 
 Route::middleware('auth')->group(function () {
