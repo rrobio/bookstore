@@ -22,6 +22,10 @@
                         Store
                     </x-nav-link>
 
+                    <x-nav-link :href="route('authors.index')" :active="request()->routeIs('authors.index')">
+                        Authors
+                    </x-nav-link>
+
                     @auth
                     <x-nav-link :href="route('library')" :active="request()->routeIs('library')">
                         Library

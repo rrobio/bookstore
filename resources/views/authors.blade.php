@@ -1,4 +1,4 @@
-@props(['authors']);
+@props(['authors'])
 
 <x-app-layout>
     <x-slot name="header">
@@ -13,7 +13,9 @@
                 <div class="p-6 text-gray-900">
                     <div class="grid lg:grid-cols-3 m-6 sm:grid-cols-2 justify-items-center gap-6">
                         @foreach ($authors as $author)
-                            <x-author-card :author="$author"/>
+                            <x-author-card :author="$author">
+                                {{ count($author->books) }}
+                            </x-author-card>
                         @endforeach
                     </div>
                 </div>
