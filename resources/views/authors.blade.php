@@ -4,9 +4,6 @@
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             Authors
-            {{--            <span class="mb-6 justify-center text-sm">--}}
-            {{--- All authors--}}
-            {{--</span>--}}
         </h2>
     </x-slot>
 
@@ -19,7 +16,6 @@
                             <x-author-card :author="$author"/>
                         @endforeach
                     </div>
-{{--                    {{ $books->links() }}--}}
                 </div>
             </div>
         </div>
