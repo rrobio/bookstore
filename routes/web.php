@@ -46,6 +46,7 @@ Route::get('/library', function () {
 Route::resource('/authors', AuthorController::class)->only(['index', 'store']);
 Route::get('/authors/{id}', function (string $id) {
     $validator = Validator::make(['id' => $id], [
+
         'id' => ['required', 'exists:authors,id']
     ]);
     if ($validator->fails()) {
