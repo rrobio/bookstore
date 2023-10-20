@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\ProfileController;
+use App\Models\Author;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,23 +18,25 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('store', [
-        'books' => \App\Models\Book::with('author')->paginate(14),
+        'books' => \App\Models\Book::with('author')->paginate(15),
     ]);
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard.index');
+    return view('dashboard.index', [
+        'authors' => Author::all()
+    ]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/store', function () {
     return view('store', [
-        'books' => \App\Models\Book::with('author')->paginate(14),
+        'books' => \App\Models\Book::with('author')->paginate(15),
     ]);
 })->name('store');
 
 Route::get('/library', function() {
     return view ('library',[
-        'books' => \App\Models\Book::with('author')->paginate(14)
+        'books' => \App\Models\Book::with('author')->paginate(15)
     ]);
 })->name('library');
 
