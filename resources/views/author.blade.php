@@ -11,7 +11,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 flex space-x-8">
-                    <img src="https://picsum.photos/id/{{$author->id + 20}}/150/300" alt="picture of the author"
+                    <img src="https://picsum.photos/id/{{$author->id + 50}}/150/300" alt="picture of the author"
                          class="rounded-lg"/>
                     <div>
                         <span class="font-bold text-xl mt-2">
