@@ -6,6 +6,7 @@ use App\Http\Controllers\ProfileController;
 use App\Models\Author;
 use App\Models\Book;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Validator;
 
 /*
 |--------------------------------------------------------------------------
