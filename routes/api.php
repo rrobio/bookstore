@@ -39,6 +39,20 @@ Route::get('books', function () {
     return response()->json(['books' => Book::all()->setHidden(['created_at', 'updated_at'])]);
 });
 
+Route::get('books/{id}', function (string $id) {
+    $validator = Validator::make(['id' => $id], [
+        'id' => ['required', 'exists:books,id']
+    ]);
+
+    if ($validator->fails()) {
+        return response()->json($validator->errors(), 400);
+    }
+
+    return response()->json([
+        'book' => Book::where('id', (int)$id)->first()->makeHidden(['created_at', 'updated_at'])
+    ]);
+})->where(['id' => '[0-9]+']);
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
