@@ -6,7 +6,7 @@
         {{ $book->title }}
     </h1>
     <h2 class="text-sm text-indigo-600 pt-4">
-        <a href="authors/{{$book->author->id}}">
+        <a href="/authors/{{$book->author->id}}">
             {{ $book->author->first_name . ' ' . $book->author->last_name }}
         </a>
     </h2>
