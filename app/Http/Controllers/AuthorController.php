@@ -10,9 +10,11 @@ use Illuminate\Support\Facades\Redirect;
 class AuthorController extends Controller
 {
     //
-    public function index(){
+    public function index()
+    {
         return view('authors')->with(['authors' => Author::with('books')->get()]);
     }
+
     public function store(Request $request): RedirectResponse
     {
         $request->validateWithBag('authorAdd', [

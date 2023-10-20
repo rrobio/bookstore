@@ -15,8 +15,7 @@ class GetAuthorsTest extends TestCase
     {
         $response = $this->get('/api/authors');
 
-        $response->assertJson(fn (AssertableJson $json) =>
-            $json->has('authors')
+        $response->assertJson(fn(AssertableJson $json) => $json->has('authors')
         );
 
         $response->assertStatus(200);

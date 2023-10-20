@@ -31,7 +31,7 @@ Route::get('authors/{id}', function (string $id) {
     }
 
     return response()->json([
-       'author' => Author::where('id', (int)$id)->first()->makeHidden(['created_at', 'updated_at'])
+        'author' => Author::where('id', (int)$id)->first()->makeHidden(['created_at', 'updated_at'])
     ]);
 })->where(['id' => '[0-9]+']);
 

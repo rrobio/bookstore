@@ -30,7 +30,7 @@
         <div>
             <x-input-label for="price" :value="__('Price')"/>
             <x-text-input id="price" name="price" type="text" class="mt-1 block w-full"
-                              autocomplete="price" />
+                          autocomplete="price"/>
             <x-input-error :messages="$errors->bookAdd->get('price')" class="mt-2"/>
         </div>
 

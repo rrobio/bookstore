@@ -36,14 +36,13 @@ Route::get('/store', function () {
     ]);
 })->name('store');
 
-Route::get('/library', function() {
-    return view ('library',[
+Route::get('/library', function () {
+    return view('library', [
         'books' => Book::with('author')->paginate(15)
     ]);
 })->name('library');
 
-Route::resource('/authors', AuthorController::class)
-    ->only(['index', 'store']);
+Route::resource('/authors', AuthorController::class)->only(['index', 'store']);
 
 Route::resource('/books', BookController::class)
     ->only(['index', 'store']);
@@ -54,4 +53,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

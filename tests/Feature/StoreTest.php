@@ -10,6 +10,7 @@ use Tests\TestCase;
 class StoreTest extends TestCase
 {
     use RefreshDatabase;
+
     /**
      * A basic test example.
      */

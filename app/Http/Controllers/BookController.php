@@ -10,7 +10,8 @@ use Illuminate\Support\Facades\Redirect;
 class BookController extends Controller
 {
     //
-    public function store(Request $request): RedirectResponse {
+    public function store(Request $request): RedirectResponse
+    {
         $this->validateWithBag('bookAdd', $request, [
             'title' => ['required', 'max:255'],
             'publication' => ['required'],

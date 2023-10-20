@@ -15,8 +15,7 @@ class GetBooksTest extends TestCase
     {
         $response = $this->get('/api/books');
 
-        $response->assertJson(fn (AssertableJson $json) =>
-            $json->has('books')
+        $response->assertJson(fn(AssertableJson $json) => $json->has('books')
         );
 
         $response->assertStatus(200);
