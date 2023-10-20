@@ -6,7 +6,9 @@
         {{ $book->title }}
     </h1>
     <h2 class="text-sm text-indigo-600 pt-4">
-        {{ $book->author->first_name . ' ' . $book->author->last_name }}
+        <a href="authors/{{$book->author->id}}">
+            {{ $book->author->first_name . ' ' . $book->author->last_name }}
+        </a>
     </h2>
     <h3 class="text-xs">
         {{ Carbon::create($book->publication)->format("Y-m-d") }}
