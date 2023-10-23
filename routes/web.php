@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\Dashboard;
 use App\Http\Controllers\ProfileController;
 use App\Models\Author;
 use App\Models\Book;
@@ -25,11 +26,7 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard.index', [
-        'authors' => Author::all()
-    ]);
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [Dashboard::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/store', function () {
     return view('store', [
