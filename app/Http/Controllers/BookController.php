@@ -9,7 +9,11 @@ use Illuminate\Support\Facades\Redirect;
 
 class BookController extends Controller
 {
-    //
+    public function index() {
+        return view('store', [
+           'books' => Book::with('author')->paginate(15)
+        ]);
+    }
     public function store(BookAddRequest $request): RedirectResponse
     {
         Book::create($request->validated());

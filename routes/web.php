@@ -20,25 +20,13 @@ use Illuminate\Support\Facades\Validator;
 |
 */
 
-Route::get('/', function () {
-    return view('store', [
-        'books' => Book::with('author')->paginate(15),
-    ]);
-});
+Route::get('/', [BookController::class, 'index']);
 
 Route::get('/dashboard', [Dashboard::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/store', [BookController::class, 'index'])->name('store');
 
-Route::get('/store', function () {
-    return view('store', [
-        'books' => Book::with('author')->paginate(15),
-    ]);
-})->name('store');
-
-Route::get('/library', function () {
-    return view('library', [
-        'books' => Book::with('author')->paginate(15)
-    ]);
-})->name('library');
+// TODO: wip, currently not implemented
+Route::get('/library', [BookController::class, 'index'])->name('library');
 
 Route::resource('/authors', AuthorController::class)->only(['index', 'store']);
 Route::get('/authors/{author}', [AuthorController::class, 'getById'])->where(['author' => '[0-9]+']);
