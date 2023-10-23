@@ -9,16 +9,16 @@
         @csrf
         @method('post')
         <div>
-            <x-input-label for="author_first_name" :value="__('First name')"/>
-            <x-text-input id="author_first_name" name="author_first_name" type="text" class="mt-1 block w-full"
-                          autocomplete="author_first_name"/>
-            <x-input-error :messages="$errors->authorAdd->get('author_first_name')" class="mt-2"/>
+            <x-input-label for="first_name" :value="__('First name')"/>
+            <x-text-input id="first_name" name="first_name" type="text" class="mt-1 block w-full"
+                          autocomplete="first_name"/>
+            <x-input-error :messages="$errors->first('first_name')" class="mt-2"/>
         </div>
         <div>
-            <x-input-label for="author_last_name" :value="__('Last name')"/>
-            <x-text-input id="author_last_name" name="author_last_name" type="text" class="mt-1 block w-full"
-                          autocomplete="author_last_name"/>
-            <x-input-error :messages="$errors->authorAdd->get('author_last_name')" class="mt-2"/>
+            <x-input-label for="last_name" :value="__('Last name')"/>
+            <x-text-input id="last_name" name="last_name" type="text" class="mt-1 block w-full"
+                          autocomplete="last_name"/>
+            <x-input-error :messages="$errors->first('last_name')" class="mt-2"/>
         </div>
         <div class="flex items-center gap-4">
             <x-primary-button>{{ __('Add') }}</x-primary-button>
