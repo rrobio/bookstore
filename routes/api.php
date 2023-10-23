@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\AuthorController;
 use App\Http\Controllers\Api\BookController;
 use App\Models\Author;
 use App\Models\Book;
@@ -18,8 +19,8 @@ use Illuminate\Support\Facades\Validator;
 |
 */
 
-Route::get('authors', [\App\Http\Controllers\Api\AuthorController::class, 'getAll']);
-Route::get('authors/{author}', [\App\Http\Controllers\Api\AuthorController::class, 'getById'])->where(['id' => '[0-9]+']);
+Route::get('authors', [AuthorController::class, 'getAll']);
+Route::get('authors/{author}', [AuthorController::class, 'getById'])->where(['id' => '[0-9]+']);
 
 Route::get('books', [BookController::class, 'getAll']);
 Route::get('books/{book}', [BookController::class, 'getById'])->where(['book' => '[0-9]+']);
