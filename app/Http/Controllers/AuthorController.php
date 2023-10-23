@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AuthorAddRequest;
 use App\Models\Author;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -15,18 +16,18 @@ class AuthorController extends Controller
         return view('authors')->with(['authors' => Author::with('books')->get()]);
     }
 
-    public function store(Request $request): RedirectResponse
+    public function store(AuthorAddRequest $request): RedirectResponse
     {
-        $request->validateWithBag('authorAdd', [
-            'author_first_name' => ['required'],
-            'author_last_name' => ['required'],
-        ]);
 
-        Author::create([
-            'first_name' => $request->input('author_first_name'),
-            'last_name' => $request->input('author_last_name'),
-        ]);
+        Author::create(
+            $request->validated()
+        );
 
         return Redirect::route('dashboard')->with('status', 'author-added');
+    }
+    public function getById(Author $author) {
+        return view('author')->with([
+            'author' => Author::with('books')->where('id', $author->id)->first(),
+        ]);
     }
 }

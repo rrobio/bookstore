@@ -44,21 +44,9 @@ Route::get('/library', function () {
 })->name('library');
 
 Route::resource('/authors', AuthorController::class)->only(['index', 'store']);
-Route::get('/authors/{id}', function (string $id) {
-    $validator = Validator::make(['id' => $id], [
+Route::get('/authors/{author}', [AuthorController::class, 'getById'])->where(['author' => '[0-9]+']);
 
-        'id' => ['required', 'exists:authors,id']
-    ]);
-    if ($validator->fails()) {
-        return response()->json($validator->errors(), 400);
-    }
-    return view('author')->with([
-        'author' => Author::with('books')->where('id', (int)$id)->first(),
-    ]);
-})->where(['id' => '[0-9]+']);
-
-Route::resource('/books', BookController::class)
-    ->only(['index', 'store']);
+Route::resource('/books', BookController::class)->only(['index', 'store']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
